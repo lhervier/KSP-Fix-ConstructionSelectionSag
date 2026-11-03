@@ -1,0 +1,4 @@
+obj/
+GameData/KSPFixConstructionSelectionSag/*.dll
+GameData/*.zip
+__pycache__/
