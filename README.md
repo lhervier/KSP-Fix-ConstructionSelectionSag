@@ -10,6 +10,11 @@ the base most players run. Here is what it fixes:
 > weight, a leg or a wheel, the vessel leans or tips over onto it as soon as anything jolts it: a time warp, the
 > vessel settling after a load. The part ends up in the ground, and stays there once released, even after a reload.
 
+<img src="imgs/selection-sag.gif" width="640" alt="A girder frame on the runway, the girder at its near end selected with the Move tool; time warps and the frame drops onto that end, which sinks into the ground">
+
+*Stock KSP 1.12 with KSP Community Fixes. A girder frame stands on the runway; Bill, on EVA, selects the girder at
+its near end with the Move tool, then warps time.*
+
 **How this was made.** The investigation and the code were written with Claude, Anthropic's AI
 assistant. Everything here was reviewed and validated by a human — me. I am saying so up front, because
 contributions made with an AI deserve a closer look than others, and because some people would rather
@@ -45,20 +50,45 @@ rests on it as it is.
 ## Checking the culprit
 
 KSP 1.12.5 with [KSP Community Fixes](https://github.com/KSPModdingLibs/KSPCommunityFixes) 1.41.1. Copy
-[construction-selection-sag.sfs](diag/construction-selection-sag.sfs) into the folder of a sandbox game and load it:
-Bill, an engineer, is on EVA on the grass west of the runway, next to a Mk1 pod standing on three small nose cones
-turned upside down.
+[selection-sag.sfs](diag/selection-sag.sfs) into the folder of a sandbox game and load it: Bill, an engineer, is on
+EVA on the runway, with Bob and Jebediah, next to a frame of girders. A Modular Girder Segment XL lies on the ground
+with three EAS-1 seats on top; at its near end, a short Modular Girder Segment holds that end up off the ground.
+
+<img src="imgs/00-bill-and-the-frame.jpg" width="640" alt="Bill on EVA on the runway, next to the frame of girders, its near end raised by the short girder">
+
+*The save loaded.*
 
 Then, by hand:
 
-1. Open the construction mode, and pick the Rotate tool.
-2. Click one of the three nose cones: its gizmo shows. Do not touch the gizmo.
+1. Open the construction mode, and pick the Move tool.
+2. Click the short girder at the near end: its gizmo shows. Do not touch the gizmo.
 3. Keep it selected, and warp time at 5x for a few seconds.
-4. Back to normal time, then pick the Place tool to release the cone.
+4. Back to normal time.
+5. Pick the Place tool to release the girder.
 
-- **On stock:** back to normal time, the pod tips over onto the selected cone, and lies on its side. Releasing the
-  cone does not stand it up again.
-- **With this mod:** the pod stays upright, before and after the cone is released.
+<img src="imgs/10-girder-selected.jpg" width="640" alt="The construction mode open with the Move tool, the short girder selected, its gizmo showing, the frame still raised">
+
+*Step 2: the short girder is selected. The frame has not moved yet.*
+
+<img src="imgs/20-timewarp.jpg" width="640" alt="The time warp at 5x, the short girder still selected">
+
+*Step 3: time warps at 5x, the girder still selected.*
+
+<img src="imgs/30-stop-timewarp-stock.jpg" width="640" alt="Back to normal time: the frame lies flat on the runway, the short girder sunk into the ground under its gizmo">
+
+*Step 4, on stock: back to normal time, a few seconds later.*
+
+<img src="imgs/40-released-stock.jpg" width="640" alt="The girder released with the Place tool: the frame still flat, the short girder still in the ground">
+
+*Step 5, on stock: the girder released.*
+
+<img src="imgs/40-released-fix.jpg" width="640" alt="With this mod, the girder released: the frame still raised on the short girder, as it was when the save loaded">
+
+*Step 5, with this mod: the girder released.*
+
+- **On stock:** back to normal time, the frame has dropped onto the selected girder: it lies flat, and the girder is
+  sunk into the runway. Releasing the girder does not lift the frame again.
+- **With this mod:** the frame stays raised on the short girder, before and after the girder is released.
 
 ## The fix
 
