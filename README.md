@@ -104,6 +104,10 @@ stock behaviour back at once.
   rails by a time warp follows its orbit, down through the terrain, where `Vessel.CheckKill` destroys it ("crashed
   through terrain"). When the held vessel goes on rails, the mod marks it as landed, as it is held in place. It is
   still held when the warp ends.
+- **The shape after a warp.** On rails, the stock code puts every part back where it was built: the vessel loses its
+  flex, and a big base visibly changes shape. Held, it keeps that shape when the warp ends, and settles only once let
+  go, all its supports solid again, as any vessel settles on stock after a warp. Seen in play on a base of a few
+  hundred parts on Eve: a way to adjust its feet so that it hardly moves when it settles.
 
 A vessel in flight is never held: frozen, it would stop following its orbit while the kerbal goes on.
 
@@ -118,8 +122,6 @@ Letting it go and holding it again when the warp ends leaves one physics step in
 What a player would see if this mod broke something, or what it should fix but was not checked yet, and how to try
 it by hand, with the mod and without:
 
-- **A heavy, flexible base.** Select a part of a base of a few hundred parts, then release it. With the mod, nothing
-  should jump or shake when it is let go, and the frame rate should not drop while it is held.
 - **On the Mun or Minmus.** The same as [Checking the culprit](#checking-the-culprit) under low gravity.
 - **A part dragged into the ground.** Without [Construction Ground Fix](https://github.com/lhervier/KSP-Fix-ConstructionGround),
   a part dragged into the ground while the vessel is held turns solid there when released: the vessel may jump when
