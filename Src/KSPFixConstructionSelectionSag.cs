@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEngine;
 
 namespace com.github.lhervier.ksp.fix.constructionselectionsag
@@ -12,7 +13,9 @@ namespace com.github.lhervier.ksp.fix.constructionselectionsag
         private void Start()
         {
             Settings.Load();
-            Log.Info($"Version {typeof(KSPFixConstructionSelectionSag).Assembly.GetName().Version}, " +
+            string version = typeof(KSPFixConstructionSelectionSag).Assembly
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+            Log.Info($"Version {version}, " +
                 $"holdVesselStill {Settings.HoldVesselStill}, log level {Log.Level}");
         }
     }
